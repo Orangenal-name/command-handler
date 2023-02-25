@@ -80,13 +80,13 @@ class CommandHandler {
 
     const command = this._commands.get(commandName);
     if (!command) {
-      return;
+      return "3";
     }
 
     const { callback, type } = command.commandObject;
 
     if (message && type === "SLASH") {
-      return;
+      return "2";
     }
 
     const usage = {
@@ -99,7 +99,7 @@ class CommandHandler {
 
     for (const validation of this._validations) {
       if (!validation(command, usage, this._prefix)) {
-        return;
+        return "1";
       }
     }
 
@@ -128,7 +128,7 @@ class CommandHandler {
       );
 
       if (response) {
-        message.reply(response).catch(() => {});
+        message.reply(response).catch((err) => {console.log(err)});
       }
     });
   }
@@ -150,7 +150,7 @@ class CommandHandler {
         interaction
       );
 
-      interaction.reply(response).catch((err) => {console.log(err)});
+      interaction.reply({content: response, ephemeral:true}).catch((err) => {console.log(err)});
     });
   }
 
