@@ -150,7 +150,7 @@ class CommandHandler {
         interaction
       );
 
-      interaction.reply(response).catch((err) => {throw new Error(err)});
+      interaction.reply(response).catch((err) => {console.log(err)});
     });
   }
 
