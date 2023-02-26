@@ -3,7 +3,7 @@ module.exports = (command, usage) => {
   const { guild } = usage;
 
   if (commandObject.testOnly !== true) {
-    return;
+    return true;
   }
 
   return instance.testServers.includes(guild?.id)

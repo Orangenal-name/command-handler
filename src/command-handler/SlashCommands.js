@@ -76,29 +76,6 @@ class SlashCommands {
 
     await existingCommand.delete();
   }
-
-  createOptions({ minArgs = 0, expectedArgs = "" }) {
-    const options = [];
-
-    if (expectedArgs) {
-      const split = expectedArgs
-        .substring(1, expectedArgs.length - 1)
-        .split("> <");
-
-      for (let i = 0; i < split.length; i++) {
-        const arg = split[i];
-
-        options.push({
-          name: arg.toLowerCase().replace(" ", "-"),
-          description: arg,
-          type: ApplicationCommandOptionType.String,
-          required: i < minArgs,
-        });
-      }
-    }
-
-    return options;
-  }
 }
 
 module.exports = SlashCommands;
